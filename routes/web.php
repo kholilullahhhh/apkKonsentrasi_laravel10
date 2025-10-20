@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
+use App\Http\Controllers\Auth\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,7 @@ use Illuminate\Support\Facades\Session;
 //landing page
 // Route::get('/', 'App\Http\Controllers\LandingController@index')->name('landing.index');
 
+Route::get('/activate-account/{token}', [AuthController::class, 'activate'])->name('activate.account');
 
 
 Route::get('/', 'App\Http\Controllers\Auth\AuthController@login')->name('login');
@@ -25,6 +27,7 @@ Route::group(['prefix' => 'auth', 'namespace' => 'App\Http\Controllers\Auth'], f
     Route::post('/login-actiion', 'AuthController@login_action')->name('login_action');
     Route::get('/regis', 'AuthController@regis')->name('regis');
     Route::post('/regisStore', 'AuthController@regisStore')->name('regisStore');
+    Route::get('/activate-account/{token}', [AuthController::class, 'activate'])->name('activate.account');
     // /regisStore
     Route::get('/logout', function () {
         Session::flush();
