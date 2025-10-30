@@ -58,7 +58,7 @@ class AuthController extends Controller
         $user->update(['status' => 'active']);
 
         return redirect()->route('login')->with('message', 'Akun berhasil diaktifkan! Silakan login.');
-    }
+    }   
 
     public function login_action(Request $request)
     {
